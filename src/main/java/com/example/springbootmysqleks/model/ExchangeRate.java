@@ -9,7 +9,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "exchange-rate")
+@Table(name = "exchange_rate")
 public class ExchangeRate {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
