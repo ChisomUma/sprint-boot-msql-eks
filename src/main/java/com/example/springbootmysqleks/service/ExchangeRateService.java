@@ -16,7 +16,7 @@ public class ExchangeRateService {
     }
 
     public double getAmount(String sourceCurrency, String targetCurrency) {
-        ExchangeRate exchangeRate =  exchangeRateRepository.findBySourceCurrencyAndTargetCurrency(sourceCurrency, targetCurrency);
+        ExchangeRate exchangeRate =  exchangeRateRepository.findFirstBySourceCurrencyAndTargetCurrency(sourceCurrency, targetCurrency);
         return exchangeRate == null ? 0 : exchangeRate.getAmount();
     }
 }
