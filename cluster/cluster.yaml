@@ -1,24 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/eksctl-io/eksctl/main/pkg/apis/eksctl.io/v1alpha5/assets/schema.json
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
   name: spring-test-cluster
-  region: ap-southeast-2
-  version: "1.27"
+  region: us-east-1
+  version: "1.30"
 
 vpc:
-  id: "vpc-id"
+  id: "vpc-0ed445cf116d91912"
   subnets:
     private:
-      ap-southeast-2a:
-        id: "subnet-01"
-      ap-southeast-2b:
-        id: "subnet-02"
+      us-east-1a:
+        id: "subnet-0c5189a8b4e7433c3" # spring-demo-subnet-private1-us-east-1a
+      us-east-1b:
+        id: "subnet-0d76e03513670e219" # spring-demo-subnet-private2-us-east-1b
     public:
-      ap-southeast-2a:
-        id: "subnet-03"
-      ap-southeast-2b:
-        id: "subnet-04"
+      us-east-1a:
+        id: "subnet-0681da867cba950fc" # spring-demo-subnet-public1-us-east-1a
+      us-east-1b:
+        id: "subnet-0223ec62eba7373d5" # spring-demo-subnet-public2-us-east-1b
 
 nodeGroups:
   - name: ng-1
@@ -30,7 +32,7 @@ nodeGroups:
     privateNetworking: true
     ssh:
       allow: true
-      publicKeyName: ec2-yt-key
+      publicKeyName: ece-db-key-pair
     iam:
       withAddonPolicies:
         imageBuilder: true
@@ -43,6 +45,5 @@ iam:
         name: aws-load-balancer-controller
         namespace: kube-system
       attachPolicyARNs:
-        - arn:aws:iam::AWS_ACCOUNT_ID:policy/AWSLoadBalancerControllerIAMPolicy
-
+        - arn:aws:iam::816069126192:policy/AWSLoadBalancerControllerIAMPolicy
 
